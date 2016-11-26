@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1028351182039",
+    "firebase_url": "https://tunitour-46343.firebaseio.com",
+    "project_id": "tunitour-46343",
+    "storage_bucket": "tunitour-46343.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1028351182039:android:5ca73797b1fde50b",
+        "android_client_info": {
+          "package_name": "tn.example.asus_octadev.tunitour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1028351182039-otkvibbfg1a5fgdkcl4fhv9n0p45hd8i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tn.example.asus_octadev.tunitour",
+            "certificate_hash": "F0293C191F5901C633EC77B14D34468AF6E5F521"
+          }
+        },
+        {
+          "client_id": "1028351182039-4vgc34gsuatdi3m7epj6o5tf84njpuul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZBGKpvrklYsCam6Ey3Tu_3Y65jKKK9So"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1028351182039-4vgc34gsuatdi3m7epj6o5tf84njpuul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
