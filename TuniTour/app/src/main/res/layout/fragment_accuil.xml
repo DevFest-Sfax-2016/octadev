@@ -1,0 +1,161 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- TODO: Update blank fragment layout -->
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.75"></RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.75"></RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5">
+
+                <com.flaviofaria.kenburnsview.KenBurnsView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/sport" />
+
+
+                <tn.example.asus_octadev.tunitour.Utils.AngledTextView
+
+                    android:id="@+id/shop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:shadowColor="@color/colorAccent"
+                    android:shadowDx="0"
+                    android:layout_marginTop="-40dp"
+                    android:paddingTop="40dp"
+                    android:shadowDy="0"
+                    android:layout_marginBottom="20dp"
+                    android:shadowRadius="20"
+                    android:text="sport"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="60dp"></tn.example.asus_octadev.tunitour.Utils.AngledTextView>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6"></RelativeLayout>
+
+            <tn.example.asus_octadev.tunitour.Utils.CutLayout
+                android:id="@+id/ac2"
+
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.6"
+                >
+
+                <com.flaviofaria.kenburnsview.KenBurnsView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/event2" />
+
+                <tn.example.asus_octadev.tunitour.Utils.AngledTextView
+                    android:id="@+id/festival"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingBottom="20dp"
+                    android:paddingTop="80dp"
+                    android:shadowColor="#ffff"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="20"
+                    android:layout_marginTop="10dp"
+                    android:text="Event"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="60dp">
+
+                </tn.example.asus_octadev.tunitour.Utils.AngledTextView>
+
+            </tn.example.asus_octadev.tunitour.Utils.CutLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"></RelativeLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+
+            <tn.example.asus_octadev.tunitour.Utils.CutLayout
+                android:id="@+id/ac"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.2"
+                >
+
+                <com.flaviofaria.kenburnsview.KenBurnsView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/histoire" />
+
+
+                <tn.example.asus_octadev.tunitour.Utils.AngledTextView
+                    android:id="@+id/patrimony"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="20dp"
+                    android:paddingTop="70dp"
+                    android:shadowColor="@color/colorAccent"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="20"
+                    android:text="historique"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="60dp"></tn.example.asus_octadev.tunitour.Utils.AngledTextView>
+
+            </tn.example.asus_octadev.tunitour.Utils.CutLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"></RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"></RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</FrameLayout>
