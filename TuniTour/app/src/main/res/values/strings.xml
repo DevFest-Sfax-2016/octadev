@@ -2,4 +2,11 @@
     <string name="app_name">TuniTour</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="login">Email</string>
+    <string name="password">password</string>
+    <string name="name">name</string>
+    <string name="tel">Telephone</string>
+    <string name="telelef">الهاتف</string>
+    <string name="passwordconfirm">confirm password</string>
+
 </resources>

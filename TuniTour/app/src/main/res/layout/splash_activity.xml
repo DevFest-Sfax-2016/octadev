@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:htext="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-60dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/spalch_draw" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.hanks.htextview.HTextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/image"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="150sp"
+                htext:animateType="scale"
+                htext:fontAsset="fonts/agc.ttf" />
+
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="100sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/image"
+                android:layout_below="@+id/text"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="0dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+
+                android:textSize="20sp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text2">
+
+                <LinearLayout
+                    android:id="@+id/cardview2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text3"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/login_bac"
+                        android:gravity="center"
+                        android:orientation="vertical"
+
+                        android:paddingBottom="20dp">
+
+                        <TextView
+                            android:id="@+id/titel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:paddingBottom="0dp"
+                            android:text="تسجيل الدخول"
+                            android:textAlignment="center"
+                            android:textSize="22dp" />
+
+                        <tn.example.asus_octadev.tunitour.Utils.ErrorLabelLayout
+                            android:id="@+id/emailerreur"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:id="@+id/email"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="30dp"
+                                android:backgroundTint="@color/gray3"
+                                android:drawableLeft="@drawable/emailprofile"
+                                android:drawablePadding="10dp"
+                                android:hint="@string/login"
+                                android:imeActionId="@+id/login"
+                                android:imeActionLabel="Login"
+                                android:imeOptions="actionUnspecified"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textColor="@color/gray3"
+                                android:textColorHint="@color/gray3"
+                                android:textCursorDrawable="@drawable/cursor" />
+                        </tn.example.asus_octadev.tunitour.Utils.ErrorLabelLayout>
+
+                        <tn.example.asus_octadev.tunitour.Utils.ErrorLabelLayout
+                            android:id="@+id/nameerreur"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:id="@+id/name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="30dp"
+                                android:backgroundTint="@color/gray3"
+                                android:drawableLeft="@drawable/user_login"
+                                android:drawablePadding="10dp"
+                                android:hint="@string/name"
+                                android:imeActionId="@+id/login"
+                                android:imeActionLabel="Login"
+                                android:imeOptions="actionUnspecified"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textColor="@color/gray3"
+                                android:textColorHint="@color/gray3"
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:visibility="gone" />
+                        </tn.example.asus_octadev.tunitour.Utils.ErrorLabelLayout>
+
+
+                        <tn.example.asus_octadev.tunitour.Utils.ErrorLabelLayout
+                            android:id="@+id/telerreur"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:id="@+id/tel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="30dp"
+                                android:backgroundTint="@color/gray3"
+                                android:drawableLeft="@drawable/phone"
+                                android:drawablePadding="10dp"
+                                android:hint="@string/tel"
+                                android:imeActionId="@+id/login"
+                                android:imeActionLabel="Login"
+                                android:imeOptions="actionUnspecified"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textColor="@color/gray3"
+                                android:textColorHint="@color/gray3"
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:visibility="gone" />
+                        </tn.example.asus_octadev.tunitour.Utils.ErrorLabelLayout>
+
+                        <tn.example.asus_octadev.tunitour.Utils.ErrorLabelLayout
+                            android:id="@+id/passworderreur"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:id="@+id/password"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="30dp"
+                                android:backgroundTint="@color/gray3"
+                                android:drawableLeft="@drawable/user_password"
+                                android:drawablePadding="10dp"
+                                android:hint="@string/password"
+                                android:imeActionId="@+id/login"
+                                android:imeActionLabel="Login"
+                                android:imeOptions="actionUnspecified"
+                                android:inputType="textPassword"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textColor="@color/gray3"
+                                android:textColorHint="@color/gray3"
+                                android:textCursorDrawable="@drawable/cursor" />
+                        </tn.example.asus_octadev.tunitour.Utils.ErrorLabelLayout>
+
+                        <tn.example.asus_octadev.tunitour.Utils.ErrorLabelLayout
+                            android:id="@+id/passwordconfirmerreur"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:id="@+id/passwordconfirm"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="30dp"
+                                android:backgroundTint="@color/gray3"
+                                android:drawableLeft="@drawable/user_password_confirm"
+                                android:drawablePadding="10dp"
+                                android:hint="@string/passwordconfirm"
+                                android:imeActionId="@+id/login"
+                                android:imeActionLabel="Login"
+                                android:imeOptions="actionUnspecified"
+                                android:inputType="textPassword"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textColor="@color/gray3"
+                                android:textColorHint="@color/gray3"
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:visibility="gone" />
+                        </tn.example.asus_octadev.tunitour.Utils.ErrorLabelLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/signinbt"
+
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="30dp"
+
+                                android:layout_marginRight="30dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/buttonshape"
+                                android:text="دخول"
+                                android:textColor="#FFFFFF"
+                                android:textSize="22dp"
+
+                                />
+
+                            <Button
+                                android:id="@+id/loginbt2"
+
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="30dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/buttonshape2"
+                                android:text="تسجيل"
+                                android:textColor="#FFFFFF"
+                                android:textSize="22dp"
+                                android:visibility="gone"
+
+                                />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/signinbt2"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginLeft="50dp"
+
+                            android:layout_marginRight="50dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/buttonshape"
+                            android:text="دخول"
+                            android:textColor="#FFFFFF"
+                            android:textSize="22dp"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/loginbt"
+
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="20dp"
+
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/buttonshape2"
+                            android:text="تسجيل"
+                            android:textColor="#FFFFFF"
+                            android:textSize="22dp"
+
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <ProgressBar
+            android:id="@+id/footer"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</RelativeLayout>
