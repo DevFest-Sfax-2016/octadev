@@ -97,7 +97,7 @@
                             android:layout_marginBottom="10dp"
                             android:layout_marginTop="10dp"
                             android:paddingBottom="0dp"
-                            android:text="تسجيل الدخول"
+                            android:text="login"
                             android:textAlignment="center"
                             android:textSize="22dp" />
 
@@ -248,7 +248,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/buttonshape"
-                                android:text="دخول"
+                                android:text="login"
                                 android:textColor="#FFFFFF"
                                 android:textSize="22dp"
 
@@ -264,7 +264,7 @@
                                 android:layout_marginTop="20dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/buttonshape2"
-                                android:text="تسجيل"
+                                android:text="create account"
                                 android:textColor="#FFFFFF"
                                 android:textSize="22dp"
                                 android:visibility="gone"
@@ -293,7 +293,7 @@
                             android:layout_marginTop="20dp"
                             android:layout_weight="1"
                             android:background="@drawable/buttonshape"
-                            android:text="دخول"
+                            android:text="login"
                             android:textColor="#FFFFFF"
                             android:textSize="22dp"
                             android:visibility="gone" />
@@ -310,7 +310,7 @@
                             android:layout_marginTop="20dp"
                             android:layout_weight="1"
                             android:background="@drawable/buttonshape2"
-                            android:text="تسجيل"
+                            android:text="create account"
                             android:textColor="#FFFFFF"
                             android:textSize="22dp"
 

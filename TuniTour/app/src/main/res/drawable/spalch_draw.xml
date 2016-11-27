@@ -6,10 +6,10 @@
     android:height="799.92dp">
     <path
         android:pathData="M0 449.138c321.498 93.085 515.708 -66.537 546.625 -201.34 55.001 26.994 218.088 166.517 253.295 329.046l0 223.076 -799.92 0 0 -350.782z"
-        android:fillColor="#00796b" />
+        android:fillColor="@color/colorPrimaryDark" />
     <path
         android:pathData="M369.942 255.223l117.005 -41.531 53.122 32.384 -1.291 -47.901 135.323 -31.681 -270.658 -3.708z"
-        android:fillColor="#00796b" />
+        android:fillColor="@color/colorPrimaryDark" />
     <path
         android:pathData="M0 449.138c251.454 127.701 541.982 3.167 548.306 -224.771 53.23 49.766 227.766 222.638 251.614 435.178l0 140.375 -799.92 0 0 -350.782z"
         android:fillColor="#ffffff" />

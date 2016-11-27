@@ -7,6 +7,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.google.android.gms.vision.text.Text;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import tn.example.asus_octadev.tunitour.Model.User;
 
 
 /**
@@ -22,6 +36,11 @@ public class prams_fragmentt extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    TextView name;
+    User post1;
+    FirebaseAuth mAuth;
+    DatabaseReference mDatabase ;
+    CircleImageView imageView;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -65,6 +84,20 @@ public class prams_fragmentt extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_prams_fragment, container, false);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        v.findViewById(R.id.deconnect).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                startActivity(new Intent(getActivity(),SplashScrin_activity.class));
+
+            }
+        });
+
+        imageView= (CircleImageView) v.findViewById(R.id.profile_image);
+        name= (TextView) v.findViewById(R.id.profile_name);
+        inti();
         v.findViewById(R.id.modify).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,5 +169,25 @@ public class prams_fragmentt extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+    public void inti() {
+        mDatabase.child("users").child(mAuth.getCurrentUser().getUid()).
+                addListenerForSingleValueEvent(
+                        new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot1) {
+                                // Get user value
+                                post1 = dataSnapshot1.getValue(User.class);
+                                name.setText(post1.getFull_name());
+                                Picasso.with(getActivity()).load(post1.getProfile_image()).into(imageView);
+
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                            }
+                        });
     }
 }

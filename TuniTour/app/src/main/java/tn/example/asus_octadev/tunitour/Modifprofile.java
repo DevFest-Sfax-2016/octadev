@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +23,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.schibstedspain.leku.LocationPickerActivity;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -33,7 +35,9 @@ public class Modifprofile extends AppCompatActivity {
     Uri selectedImage,url;
     DatabaseReference mDatabase ;
     EditText name,tel;
+    TextView username;
     User post1;
+    CircleImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +45,17 @@ public class Modifprofile extends AppCompatActivity {
         setContentView(R.layout.activity_modifprofile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle("Edit Profil");
-        mAuth = FirebaseAuth.getInstance();
         inti();
         name= (EditText) findViewById(R.id.name);
         tel= (EditText) findViewById(R.id.tel);
-
-
+        imageView= (CircleImageView) findViewById(R.id.profile_image);
+        username= (TextView) findViewById(R.id.username);
         findViewById(R.id.profile_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +77,7 @@ public class Modifprofile extends AppCompatActivity {
                         url=taskSnapshot.getDownloadUrl();
                         post1.setFull_name(name.getText().toString());
                         post1.setMobile(tel.getText().toString());
+                        if(url!=null)
                         post1.setProfile_image(url.toString());
 
                         mDatabase.child("users").child(mAuth.getCurrentUser().getUid()).setValue(post1);
@@ -122,7 +127,10 @@ public class Modifprofile extends AppCompatActivity {
                                 // Get user value
                                 post1 = dataSnapshot1.getValue(User.class);
                                 name.setText(post1.getFull_name());
+                                username.setText("hey "+post1.getFull_name());
                                 tel.setText(post1.getMobile());
+                                Picasso.with(Modifprofile.this).load(post1.getProfile_image()).into(imageView);
+
 
 
                             }

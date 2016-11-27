@@ -116,7 +116,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
-                android:text="مهرجان الرياض"
                 android:textColor="@android:color/black"
                 android:textSize="30sp" />
 
@@ -125,8 +124,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
-                android:text="مسيقى ,غناء"
-                android:textSize="14sp" />
+               android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -290,7 +288,7 @@
                                 android:drawableRight="@drawable/web1"
                                 android:gravity="center_vertical"
                                 android:paddingRight="5dp"
-                                android:text=" موقع الواب "
+                                android:text="web site"
                                 android:textColor="@android:color/white" />
 
                             <Button

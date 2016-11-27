@@ -6,8 +6,8 @@
     <string name="password">password</string>
     <string name="name">name</string>
     <string name="tel">Telephone</string>
-    <string name="telelef">الهاتف</string>
-    <string name="email2">الايمايل</string>
+    <string name="telelef">mobile</string>
+    <string name="email2">Email</string>
     <string name="passwordconfirm">confirm password</string>
     <string name="google_maps_key">AIzaSyDRP-egl6rIruq1nydCEYjsjBMprbTDhYM</string>
 

@@ -85,10 +85,10 @@ public class SplashScrin_activity extends AppCompatActivity {
         final HTextView hTextView = (HTextView) findViewById(R.id.text);
 
 
-        hTextView.animateText("ﻚﺘﻠﺣﺭ");
+        hTextView.animateText("TuniTour");
         final TextView hTextView2 = (TextView) findViewById(R.id.text2);
 
-        hTextView2.setText("تطبيق رحلتك هو طريقك الى سياحة ورحلة ممتعه مع عائلتك و أصدقائك");
+        hTextView2.setText("L'application TuniTour est la voie au tourisme et voyage agréable avec votre famille et vos amis");
         Typeface tf = Typeface.createFromAsset(getAssets(),
                 "fonts/lettre.ttf");
         hTextView2.setTypeface(tf);
@@ -111,7 +111,7 @@ public class SplashScrin_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (findViewById(R.id.name).getVisibility() == View.GONE) {
-                    ((TextView) findViewById(R.id.titel)).setText("حساب جديد");
+                    ((TextView) findViewById(R.id.titel)).setText("create account");
                     slideToBu(findViewById(R.id.name));
                     slideToBu(findViewById(R.id.tel));
                     slideToBu(findViewById(R.id.passwordconfirm));
@@ -122,7 +122,7 @@ public class SplashScrin_activity extends AppCompatActivity {
                     TextView hTextView3 = (TextView) findViewById(R.id.text3);
                     hTextView3.setVisibility(View.VISIBLE);
                     if (hTextView3.getVisibility() == View.VISIBLE)
-                        hTextView3.setText("رحلتك");
+                        hTextView3.setText("TuniTour");
                     Typeface tf = Typeface.createFromAsset(getAssets(),
                             "fonts/agc.ttf");
                     hTextView3.setTypeface(tf);
@@ -227,7 +227,7 @@ public class SplashScrin_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (findViewById(R.id.name).getVisibility() == View.VISIBLE) {
-                    ((TextView) findViewById(R.id.titel)).setText("تسجيل الدخول");
+                    ((TextView) findViewById(R.id.titel)).setText("signed in ");
 
                     slideToTop(findViewById(R.id.name));
                     slideToTop(findViewById(R.id.tel));
