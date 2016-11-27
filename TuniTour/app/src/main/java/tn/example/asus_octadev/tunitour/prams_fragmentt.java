@@ -1,6 +1,6 @@
 package tn.example.asus_octadev.tunitour;
 
-import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link prams_fragment.OnFragmentInteractionListener} interface
+ * {@link prams_fragmentt.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link prams_fragment#newInstance} factory method to
+ * Use the {@link prams_fragmentt#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class prams_fragment extends Fragment {
+public class prams_fragmentt extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +29,7 @@ public class prams_fragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public prams_fragment() {
+    public prams_fragmentt() {
         // Required empty public constructor
     }
 
@@ -39,11 +39,11 @@ public class prams_fragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment prams_fragment.
+     * @return A new instance of fragment Accuil.
      */
     // TODO: Rename and change types and number of parameters
-    public static prams_fragment newInstance(String param1, String param2) {
-        prams_fragment fragment = new prams_fragment();
+    public static prams_fragmentt newInstance(String param1, String param2) {
+        prams_fragmentt fragment = new prams_fragmentt();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +64,14 @@ public class prams_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_prams_fragment, container, false);
+        View v= inflater.inflate(R.layout.fragment_prams_fragment, container, false);
+        v.findViewById(R.id.modify).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),Modifprofile.class));
+            }
+        });
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -73,6 +80,7 @@ public class prams_fragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
+
 
     @Override
     public void onDetach() {

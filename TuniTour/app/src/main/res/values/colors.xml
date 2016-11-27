@@ -9,4 +9,7 @@
     <color name="gold">#FFD700</color>
     <color name="gray2">#f2f2f2</color>
     <color name="gray3">#969696</color>
+
+    <color name="colorPrimary2">#99AB47BC</color>
+
 </resources>

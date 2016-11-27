@@ -36,7 +36,7 @@ fab:fab_labelsPosition="left">
     fab:fab_colorPressed="#ffff"
     fab:fab_icon="@drawable/google_maps_mark2"
     fab:fab_size="mini"
-    fab:fab_title="hotel" />
+    fab:fab_title="doctor" />
 <com.getbase.floatingactionbutton.FloatingActionButton
     android:id="@+id/btn2"
     android:layout_width="wrap_content"

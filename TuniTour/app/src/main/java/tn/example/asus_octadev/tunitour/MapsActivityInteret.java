@@ -29,6 +29,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -55,6 +57,22 @@ public class MapsActivityInteret extends FragmentActivity implements OnMapReadyC
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        findViewById(R.id.btn1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMap.clear();
+                doctor();
+
+            }
+        });
+        findViewById(R.id.btn2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMap.clear();
+loadhospitale();
+
+            }
+        });
     }
 
 
@@ -72,9 +90,18 @@ public class MapsActivityInteret extends FragmentActivity implements OnMapReadyC
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+        LatLng sydney = new LatLng(34.914848, 10.603875);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(12));
+        Circle circle = mMap.addCircle(new CircleOptions()
+                .center(new LatLng(34.914848, 10.603875))
+                .radius(10000)
+                .strokeColor(getResources().getColor(R.color.colorPrimary2))
+                .strokeWidth(1.5f)
+                .fillColor(getResources().getColor(R.color.colorPrimary2)));
+
+
     }
 
 
@@ -97,6 +124,17 @@ public class MapsActivityInteret extends FragmentActivity implements OnMapReadyC
 
 
                 Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                LatLng sydney = new LatLng(location.getLatitude() , location.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(12));
+                Circle circle = mMap.addCircle(new CircleOptions()
+                        .center(new LatLng(location.getLatitude() , location.getLongitude()))
+                        .radius(10000)
+                        .strokeColor(getResources().getColor(R.color.colorPrimary2))
+                        .strokeWidth(1.5f)
+                        .fillColor(getResources().getColor(R.color.colorPrimary2)));
+
                 StringRequest strReq = new StringRequest(Request.Method.GET,
              /*   " http://maps.googleapis.com/maps/api/geocode/json?latlng="+ StaticApp.lat+","+StaticApp.lon+"&sensor=false"*/
                         "https://maps.googleapis.com/maps/api/place/search/json?location=" + location.getLatitude() + "," + location.getLongitude() + "&rankby=distance&types=hospital&sensor=false&key=AIzaSyAD2im6QzNTe_iN79IhVkYx247M6K3fARc"
@@ -183,7 +221,7 @@ public class MapsActivityInteret extends FragmentActivity implements OnMapReadyC
         customMarkerView.draw(canvas);
         return returnedBitmap;
     }
-    public void hotel() {
+    public void doctor() {
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -201,6 +239,17 @@ public class MapsActivityInteret extends FragmentActivity implements OnMapReadyC
 
 
                 Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                LatLng sydney = new LatLng(location.getLatitude() , location.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(12));
+                Circle circle = mMap.addCircle(new CircleOptions()
+                        .center(new LatLng(location.getLatitude() , location.getLongitude()))
+                        .radius(10000)
+                        .strokeColor(getResources().getColor(R.color.colorPrimary2))
+                        .strokeWidth(1.5f)
+                        .fillColor(getResources().getColor(R.color.colorPrimary2)));
+
                 StringRequest strReq = new StringRequest(Request.Method.GET,
              /*   " http://maps.googleapis.com/maps/api/geocode/json?latlng="+ StaticApp.lat+","+StaticApp.lon+"&sensor=false"*/
                         "https://maps.googleapis.com/maps/api/place/search/json?location=" + location.getLatitude() + "," + location.getLongitude() + "&rankby=distance&types=doctor&sensor=false&key=AIzaSyAD2im6QzNTe_iN79IhVkYx247M6K3fARc"
