@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto">
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tn.example.asus_octadev.tunitour.MapsActivityInteret" />
+<com.getbase.floatingactionbutton.FloatingActionsMenu
+android:id="@+id/fab_menu"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="right|bottom"
+fab:fab_addButtonColorNormal="@color/colorAccent"
+fab:fab_addButtonColorPressed="@color/colorAccent"
+fab:fab_addButtonStrokeVisible="true"
+fab:fab_addButtonSize="normal"
+    android:layout_alignParentBottom="true"
+fab:fab_labelStyle="@style/menu_labels_style"
+    android:layout_alignParentRight="true"
+fab:fab_labelsPosition="left">
+
+
+
+<com.getbase.floatingactionbutton.FloatingActionButton
+    android:id="@+id/btn1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    fab:fab_colorNormal="#ffff"
+    fab:fab_colorPressed="#ffff"
+    fab:fab_icon="@drawable/google_maps_mark2"
+    fab:fab_size="mini"
+    fab:fab_title="doctor" />
+<com.getbase.floatingactionbutton.FloatingActionButton
+    android:id="@+id/btn2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    fab:fab_colorNormal="#ffff"
+    fab:fab_colorPressed="#ffff"
+    fab:fab_icon="@drawable/google_maps_mark2"
+    fab:fab_size="mini"
+    fab:fab_title="hospital" />
+</com.getbase.floatingactionbutton.FloatingActionsMenu>
+</RelativeLayout>

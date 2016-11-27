@@ -8,10 +8,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.games.event.Events;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,16 +35,7 @@ import java.util.HashMap;
 import tn.example.asus_octadev.tunitour.Adaper.AdapterEvent1;
 import tn.example.asus_octadev.tunitour.Model.Event;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link EventsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link EventsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class EventsFragment extends Fragment {
+public class EventsFragment extends AppCompatActivity {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -52,76 +47,45 @@ public class EventsFragment extends Fragment {
     AdapterEvent1 adapter;
     RecyclerView recyclerView;
     DatabaseReference mDatabase ;
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    public EventsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EventsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EventsFragment newInstance(String param1, String param2) {
-        EventsFragment fragment = new EventsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    String type;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_events, container, false);
+        setContentView(R.layout.fragment_events);
+        Bundle extras = getIntent().getExtras();
+        type=extras.getString("type");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle(type);
         allSampleData = new ArrayList<>();
+        progres= (ProgressBar)findViewById(R.id.progress);
+        connection= (ImageView)findViewById(R.id.connection);
 
-
-        progres= (ProgressBar)view.findViewById(R.id.progress);
-        connection= (ImageView)view.findViewById(R.id.connection);
-
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         recyclerView.setHasFixedSize(true);
-        GridLayoutManager gl = new GridLayoutManager(getActivity(), 1, LinearLayoutManager.VERTICAL, false);
+        GridLayoutManager gl = new GridLayoutManager(this, 1, LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(gl);
-        adapter = new AdapterEvent1(allSampleData,getActivity());
+        adapter = new AdapterEvent1(allSampleData,this);
 
 
         recyclerView.setAdapter(adapter);
         createDummyData();
-        return view;
 
     }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (menuItem.getItemId() == android.R.id.home) {
+            finish();
         }
+        return super.onOptionsItemSelected(menuItem);
     }
+    // TODO: Rename method, update argument and hook method into UI event
+
     private void createDummyData() {
         allSampleData.clear();
 
@@ -129,7 +93,7 @@ public class EventsFragment extends Fragment {
             connection.setVisibility(View.VISIBLE);
             progres.setVisibility(View.GONE);
             Snackbar snackbar = Snackbar
-                    .make(getActivity().findViewById(R.id
+                    .make(EventsFragment.this.findViewById(R.id
                             .main_content), "No internet connection!", Snackbar.LENGTH_INDEFINITE)
                     .setAction("RETRY", new View.OnClickListener() {
                         @Override
@@ -155,7 +119,7 @@ public class EventsFragment extends Fragment {
 
     }
     public Boolean isOnline() {
-        ConnectivityManager cm = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) EventsFragment.this.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         if (netInfo != null && netInfo.isConnectedOrConnecting()&& cm.getActiveNetworkInfo().isAvailable()&& cm.getActiveNetworkInfo().isConnected())
         {
@@ -181,7 +145,7 @@ public class EventsFragment extends Fragment {
                                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                                     Event post = postSnapshot.getValue(Event.class);
                                     post.setId(postSnapshot.getKey());
-                                    if(post.getType().equals("المعالم السياحية المشهورة"))
+                                    if(post.getType().equals(type))
                                     {
                                         allSampleData.add(post);
                                         progres.setVisibility(View.GONE);
@@ -198,18 +162,5 @@ public class EventsFragment extends Fragment {
 
 
     }
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
+
 }

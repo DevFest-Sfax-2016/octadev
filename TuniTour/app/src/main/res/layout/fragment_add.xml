@@ -1,0 +1,104 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tn.example.asus_octadev.tunitour.AddFragment"
+    android:background="@android:color/white">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:id="@+id/ad"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:elevation="25dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/gray3"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:id="@+id/name"
+            android:textColor="@color/gray3"
+            android:textColorHint="@color/gray3"
+            android:text="taswira men touniss"
+            android:textCursorDrawable="@drawable/cursor"
+            android:padding="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray3"/>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/camera"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="camera"
+                    android:layout_marginLeft="10dp"
+
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/position">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mark" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="position"
+                    android:layout_marginLeft="10dp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/done">
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:textSize="18dp"/></LinearLayout>
+
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_below="@+id/ad"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/gray3"
+        android:layout_marginTop="20dp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
+</RelativeLayout>

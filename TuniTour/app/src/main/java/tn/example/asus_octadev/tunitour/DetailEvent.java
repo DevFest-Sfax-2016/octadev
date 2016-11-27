@@ -223,12 +223,11 @@ public class DetailEvent extends AppCompatActivity  {
         jours.setText(jour + "");
         mois.setText(monthString);
 
-        if(event.getType().equals(StaticV.ListeType[0])||event.getType().equals(StaticV.ListeType[1])||event.getType().equals(StaticV.ListeType[3])||event.getType().equals(StaticV.ListeType[7]))
-        {
+
             time.setVisibility(View.GONE);
             jours.setText("");
             mois.setText("");
-        }
+
         init();
 
     }
@@ -364,51 +363,6 @@ public class DetailEvent extends AppCompatActivity  {
             finish();
         }
         return super.onOptionsItemSelected(menuItem);
-    }
-
-    private int veriftype(String type) {
-        if(type.equals(StaticV.ListeType[0]))
-            return R.drawable.marker11;
-
-        if(type.equals(StaticV.ListeType[1]))
-            return R.drawable.marker2;
-
-        if(type.equals(StaticV.ListeType[2]))
-            return R.drawable.marker3;
-
-        if(type.equals(StaticV.ListeType[3]))
-            return R.drawable.marker4;
-
-        if(type.equals(StaticV.ListeType[4]))
-            return R.drawable.marker5;
-        if(type.equals(StaticV.ListeType[5]))
-            return R.drawable.marker6;
-        if(type.equals(StaticV.ListeType[6]))
-            return R.drawable.marker6;
-
-        if(type.equals(StaticV.ListeType[7]))
-            return R.drawable.marker7;
-        if(type.equals("me"))
-            return R.drawable.memarker;
-        return R.drawable.marker1;
-    }
-    private Bitmap getMarkerBitmapFromView(@DrawableRes int resId) {
-
-        View customMarkerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.view_custom_marker, null);
-        ImageView markerImageView = (ImageView) customMarkerView.findViewById(R.id.profile_image);
-        markerImageView.setImageResource(resId);
-        customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        customMarkerView.layout(0, 0, customMarkerView.getMeasuredWidth(), customMarkerView.getMeasuredHeight());
-        customMarkerView.buildDrawingCache();
-        Bitmap returnedBitmap = Bitmap.createBitmap(customMarkerView.getMeasuredWidth(), customMarkerView.getMeasuredHeight(),
-                Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(returnedBitmap);
-        canvas.drawColor(Color.WHITE, PorterDuff.Mode.SRC_IN);
-        Drawable drawable = customMarkerView.getBackground();
-        if (drawable != null)
-            drawable.draw(canvas);
-        customMarkerView.draw(canvas);
-        return returnedBitmap;
     }
     public void infoPoster() {
         mDatabase = FirebaseDatabase.getInstance().getReference();

@@ -5,6 +5,6 @@ package tn.example.asus_octadev.tunitour.Utils;
  */
 
 public class StaticV {
-    public static String[] ListeType={"المعالم السياحية المشهورة","تسوق و مطاعم","شاهد امرح العب","أحداث","عروض","فعاليات و معارض","مهرجانات","تراث","المغامرة"};
+    public static String[] ListeType={"Event","","historique","","عروض","فعاليات و معارض","مهرجانات","تراث","المغامرة"};
 
 }

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:gravity="right"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorAccent"
+                        android:gravity="center"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:id="@+id/save"
+
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="save"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            >
+
+            <!-- TODO: Update blank fragment layout -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/profile_image"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="20dp"
+                            android:elevation="20dp"
+                            android:src="@drawable/event2"
+                            app:civ_border_color="@color/colorAccent"
+                            app:civ_border_width="2dp" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:id="@+id/username"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center_horizontal"
+                            android:text="Hey Marwen !"
+                            android:textSize="22dp" />
+
+                        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@android:color/white"
+                            android:orientation="vertical"
+                            app:cardCornerRadius="5dp"
+                            app:cardUseCompatPadding="true">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left"
+                                    android:gravity="center_horizontal"
+                                    android:padding="5dp"
+                                    android:id="@+id/user"
+                                    android:text="Hey Personnal compte !"
+                                    android:textSize="12dp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="5dp"
+                                        android:background="@drawable/user2"
+                                        android:padding="5dp" />
+
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:backgroundTint="@color/gray3"
+                                        android:paddingLeft="5dp"
+                                        android:paddingRight="5dp"
+                                        android:id="@+id/name"
+                                        android:textColor="@color/gray3"
+                                        android:textColorHint="@color/gray3"
+                                        android:textCursorDrawable="@drawable/cursor" />
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/emailc"
+                                    android:visibility="gone">
+
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="5dp"
+                                        android:background="@drawable/emailprofile"
+                                        android:padding="5dp" />
+
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:backgroundTint="@color/gray3"
+                                        android:paddingLeft="5dp"
+                                        android:paddingRight="5dp"
+                                        android:id="@+id/email"
+                                        android:enabled="false"
+                                        android:textColor="@color/gray3"
+                                        android:textColorHint="@color/gray3"
+                                        android:textCursorDrawable="@drawable/cursor" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="5dp"
+                                        android:background="@drawable/phone2"
+                                        android:padding="5dp" />
+
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:backgroundTint="@color/gray3"
+                                        android:paddingLeft="5dp"
+                                        android:paddingRight="5dp"
+
+                                        android:id="@+id/tel"                                    android:textColor="@color/gray3"
+                                        android:textColorHint="@color/gray3"
+                                        android:textCursorDrawable="@drawable/cursor" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                        </android.support.v7.widget.CardView>
+
+
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </ScrollView>
+        </FrameLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
