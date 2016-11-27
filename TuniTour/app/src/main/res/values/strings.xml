@@ -7,6 +7,10 @@
     <string name="name">name</string>
     <string name="tel">Telephone</string>
     <string name="telelef">الهاتف</string>
+    <string name="email2">الايمايل</string>
     <string name="passwordconfirm">confirm password</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

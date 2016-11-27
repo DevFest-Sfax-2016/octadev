@@ -5,5 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="gray3">#999999</color>
     <color name="textcolor">#A8896C</color>
+    <color name="bg_gray">#ecedef</color>
+    <color name="gray">#f3f5f3</color>
+    <color name="oragne">#e84a2e</color>
 
 </resources>
