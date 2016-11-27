@@ -10,18 +10,28 @@ public class User {
     String email,full_name,mobile,profile_image;
     String password;
     String android_not_token;
+    String fcm ;
 
 
     public User() {
     }
 
-    public User(String email, String login, String tel, String photo,String password) {
+    public User(String email, String login, String tel, String photo,String password,String fcm) {
         this.email = email;
         this.full_name = login;
         this.mobile = tel;
         this.profile_image = photo;
         this.password = password;
+        this.fcm=fcm;
 
+    }
+
+    public String getFcm() {
+        return fcm;
+    }
+
+    public void setFcm(String fcm) {
+        this.fcm = fcm;
     }
 
     public String getAndroid_not_token() {

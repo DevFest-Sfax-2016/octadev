@@ -68,11 +68,11 @@ public class AddFragment extends Fragment {
     ImageView connection;
     AdapterAdd adapter;
     RecyclerView recyclerView;
-    DatabaseReference mDatabase ;
+    DatabaseReference mDatabase;
     ArrayList<Add> allSampleData;
-    Uri selectedImage,url;
+    Uri selectedImage, url;
     FirebaseAuth mAuth;
-    String lieux="";
+    String lieux = "";
     EditText name;
     Add post;
 
@@ -118,13 +118,13 @@ public class AddFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_add, container, false);
+        View view = inflater.inflate(R.layout.fragment_add, container, false);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        name= (EditText) view.findViewById(R.id.name);
+        name = (EditText) view.findViewById(R.id.name);
         view.findViewById(R.id.done).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!name.getText().toString().equals("")) {
+                if (!name.getText().toString().equals("")) {
                     mAuth = FirebaseAuth.getInstance();
                     StorageReference firestorage;
                     firestorage = FirebaseStorage.getInstance().getReference();
@@ -141,8 +141,7 @@ public class AddFragment extends Fragment {
                     });
 
 
-                }
-                else
+                } else
                     Toast.makeText(getActivity(), "veuillez renseigner la description", Toast.LENGTH_SHORT).show();
 
             }
@@ -166,8 +165,8 @@ public class AddFragment extends Fragment {
         });
 
         allSampleData = new ArrayList<>();
-        progres= (ProgressBar)view.findViewById(R.id.progress);
-        connection= (ImageView)view.findViewById(R.id.connection);
+        progres = (ProgressBar) view.findViewById(R.id.progress);
+        connection = (ImageView) view.findViewById(R.id.connection);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recy);
 
@@ -175,7 +174,7 @@ public class AddFragment extends Fragment {
         GridLayoutManager gl = new GridLayoutManager(getActivity(), 1, LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(gl);
-        adapter = new AdapterAdd(allSampleData,getActivity());
+        adapter = new AdapterAdd(allSampleData, getActivity());
 
 
         recyclerView.setAdapter(adapter);
@@ -184,6 +183,7 @@ public class AddFragment extends Fragment {
 
         return view;
     }
+
     public void updatCom() {
         mDatabase.child("ad").limitToLast(1).addListenerForSingleValueEvent(
                 new ValueEventListener() {
@@ -238,15 +238,13 @@ public class AddFragment extends Fragment {
 
 
     }
+
     public Boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnectedOrConnecting()&& cm.getActiveNetworkInfo().isAvailable()&& cm.getActiveNetworkInfo().isConnected())
-        {
+        if (netInfo != null && netInfo.isConnectedOrConnecting() && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected()) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -254,7 +252,8 @@ public class AddFragment extends Fragment {
 
     public void remplirEvent()
 
-    {allSampleData.clear();
+    {
+        allSampleData.clear();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("ad").
                 addListenerForSingleValueEvent(
@@ -266,19 +265,23 @@ public class AddFragment extends Fragment {
                                     post = postSnapshot.getValue(Add.class);
                                     post.setId(postSnapshot.getKey());
                                     mDatabase = FirebaseDatabase.getInstance().getReference();
-                                    String id=post.getIduser()+"";
+                                    String id = post.getIduser() + "";
                                     mDatabase.child("users").child(id).
                                             addListenerForSingleValueEvent(
                                                     new ValueEventListener() {
                                                         @Override
                                                         public void onDataChange(DataSnapshot dataSnapshot1) {
                                                             // Get user value
-                                                                User post1 = dataSnapshot1.getValue(User.class);
+                                                            User post1 = dataSnapshot1.getValue(User.class);
+
+                                                            if (post1 != null) {
                                                                 post.setPhoto(post1.getProfile_image()+"");
-                                                                post.setName(post1.getFull_name()+"");
+                                                                post.setName(post1.getFull_name() + "");
+                                                                post.setFcm(post1.getFcm());
 
-
+                                                            }
                                                         }
+
                                                         @Override
                                                         public void onCancelled(DatabaseError databaseError) {
                                                         }
@@ -286,12 +289,12 @@ public class AddFragment extends Fragment {
 
 
                                     allSampleData.add(post);
-                                        adapter.notifyDataSetChanged();
-
+                                    adapter.notifyDataSetChanged();
 
 
                                 }
                             }
+
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
                             }
@@ -317,13 +320,12 @@ public class AddFragment extends Fragment {
             selectedImage = data.getData();
 
 
-
         }
         if (requestCode == 1) {
-            if(resultCode == RESULT_OK){
+            if (resultCode == RESULT_OK) {
 
                 String address = data.getStringExtra(LocationPickerActivity.LOCATION_ADDRESS);
-                lieux=address;
+                lieux = address;
 
             }
             if (resultCode == RESULT_CANCELED) {
@@ -331,6 +333,7 @@ public class AddFragment extends Fragment {
             }
         }
     }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated

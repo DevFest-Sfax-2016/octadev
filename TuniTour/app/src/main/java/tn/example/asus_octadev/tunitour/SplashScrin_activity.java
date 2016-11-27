@@ -29,6 +29,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.hanks.htextview.HTextView;
 
 import org.json.JSONException;
@@ -38,6 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import tn.example.asus_octadev.tunitour.Model.User;
+import tn.example.asus_octadev.tunitour.Services.FirebaseInstanceIDService;
 import tn.example.asus_octadev.tunitour.Utils.ErrorLabelLayout;
 import tn.example.asus_octadev.tunitour.Utils.MyApplication;
 import tn.example.asus_octadev.tunitour.Utils.UrlStatic;
@@ -51,10 +54,15 @@ public class SplashScrin_activity extends AppCompatActivity {
     User o;
     FirebaseUser user;
     String mail,password1,tel1,name1;
+    String key;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
+        FirebaseMessaging.getInstance().subscribeToTopic("test");
+        FirebaseInstanceId.getInstance().getToken();
+        FirebaseInstanceIDService.token = FirebaseInstanceId.getInstance().getToken();
+        key= FirebaseInstanceIDService.token;
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -248,8 +256,6 @@ public class SplashScrin_activity extends AppCompatActivity {
 
     private void createAccount() {
 
-
-        // [START create_user_with_email]
         mAuth.createUserWithEmailAndPassword(mail,password1)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -257,7 +263,7 @@ public class SplashScrin_activity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             signIn(mail, password1);
-                            User o = new User(mail, name1, tel1, "", password1);
+                            User o = new User(mail, name1, tel1, "", password1,key);
                             mDatabase.child("users").child(mAuth.getCurrentUser().getUid()).setValue(o);
 
                         }

@@ -179,6 +179,7 @@ public class prams_fragmentt extends Fragment {
                                 // Get user value
                                 post1 = dataSnapshot1.getValue(User.class);
                                 name.setText(post1.getFull_name());
+                                if(! post1.getProfile_image().equals(""))
                                 Picasso.with(getActivity()).load(post1.getProfile_image()).into(imageView);
 
 

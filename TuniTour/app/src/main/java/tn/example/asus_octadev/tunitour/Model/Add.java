@@ -8,6 +8,8 @@ public class Add {
     String id,description,image,lieux;
     String name,photo,like,comment,iduser;
     long created;
+    String fcm;
+
 
     public Add() {
     }
@@ -19,6 +21,14 @@ public class Add {
         this.lieux = lieux;
         this.created = created;
         this.like=like;
+    }
+
+    public String getFcm() {
+        return fcm;
+    }
+
+    public void setFcm(String fcm) {
+        this.fcm = fcm;
     }
 
     public String getIduser() {

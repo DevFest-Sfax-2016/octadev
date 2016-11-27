@@ -393,9 +393,7 @@ public class DetailEvent extends AppCompatActivity  {
                             }
 
 
-                        } else
-                            Toast.makeText(DetailEvent.this, "null", Toast.LENGTH_SHORT).show();
-
+                        }
 
                     }
 

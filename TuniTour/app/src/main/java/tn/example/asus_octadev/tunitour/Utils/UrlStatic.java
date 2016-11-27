@@ -5,9 +5,8 @@ package tn.example.asus_octadev.tunitour.Utils;
  */
 
 public class UrlStatic {
-    static String urlRihlati="http://octadevtn.com/rihlati/";
+    static String urlRihlati="http://octadevtn.com/";
 
 
-    public static String IdentificationUrl= urlRihlati+"identification.php";
-    public static String inscription= urlRihlati+"inscription.php";
+    public static String notifier= urlRihlati+"notifier.php";
 }
