@@ -2,38 +2,52 @@ package tn.example.asus_octadev.tunitour;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.location.Address;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.schibstedspain.leku.LocationPickerActivity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import tn.example.asus_octadev.tunitour.Adaper.AdapterAdd;
 import tn.example.asus_octadev.tunitour.Adaper.AdapterEvent1;
 import tn.example.asus_octadev.tunitour.Model.Add;
 import tn.example.asus_octadev.tunitour.Model.Event;
+import tn.example.asus_octadev.tunitour.Model.User;
 
+import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 
@@ -56,7 +70,11 @@ public class AddFragment extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference mDatabase ;
     ArrayList<Add> allSampleData;
-    Uri selectedImage;
+    Uri selectedImage,url;
+    FirebaseAuth mAuth;
+    String lieux="";
+    EditText name;
+    Add post;
 
 
     // TODO: Rename and change types of parameters
@@ -102,29 +120,50 @@ public class AddFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_add, container, false);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        name= (EditText) view.findViewById(R.id.name);
         view.findViewById(R.id.done).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                if(!name.getText().toString().equals("")) {
+                    mAuth = FirebaseAuth.getInstance();
+                    StorageReference firestorage;
+                    firestorage = FirebaseStorage.getInstance().getReference();
+                    StorageReference filepath = firestorage.child("users").child(selectedImage.getLastPathSegment());
+                    filepath.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            url = taskSnapshot.getDownloadUrl();
+                            Add add = new Add(mAuth.getCurrentUser().getUid(), name.getText().toString(), url + "", lieux, 0, "0");
+                            mDatabase.child("ad").push().setValue(add);
+                            updatCom();
 
-                Add  add=new Add(mAuth.getCurrentUser().getUid(),"desription","","",102222,"0");
+                        }
+                    });
 
-                mDatabase.child("ad").push().setValue(add);
+
+                }
+                else
+                    Toast.makeText(getActivity(), "veuillez renseigner la description", Toast.LENGTH_SHORT).show();
 
             }
         });
         view.findViewById(R.id.camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent();
-                intent.setType("image*/");
-    intent.setAction(Intent.ACTION_GET_CONTENT);
-    startActivityForResult(Intent.createChooser(intent, "Select Picture"), 200);
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 200);
+
             }
         });
-
+        view.findViewById(R.id.position).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), LocationPickerActivity.class);
+                startActivityForResult(i, 1);
+            }
+        });
 
         allSampleData = new ArrayList<>();
         progres= (ProgressBar)view.findViewById(R.id.progress);
@@ -144,6 +183,29 @@ public class AddFragment extends Fragment {
 
 
         return view;
+    }
+    public void updatCom() {
+        mDatabase.child("ad").limitToLast(1).addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Get user value
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                            User post = postSnapshot.getValue(User.class);
+                            // System.out.println(post.email + " - " + post.password);if
+                            if (post != null) {
+                                String IdCom = postSnapshot.getKey().toString();
+                                mDatabase.child("ad").child(IdCom).child("created").setValue(ServerValue.TIMESTAMP);
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
     }
 
     private void createDummyData() {
@@ -201,10 +263,29 @@ public class AddFragment extends Fragment {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 // Get user value
                                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                                    Add post = postSnapshot.getValue(Add.class);
+                                    post = postSnapshot.getValue(Add.class);
                                     post.setId(postSnapshot.getKey());
+                                    mDatabase = FirebaseDatabase.getInstance().getReference();
+                                    String id=post.getIduser()+"";
+                                    mDatabase.child("users").child(id).
+                                            addListenerForSingleValueEvent(
+                                                    new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(DataSnapshot dataSnapshot1) {
+                                                            // Get user value
+                                                                User post1 = dataSnapshot1.getValue(User.class);
+                                                                post.setPhoto(post1.getProfile_image()+"");
+                                                                post.setName(post1.getFull_name()+"");
 
-                                        allSampleData.add(post);
+
+                                                        }
+                                                        @Override
+                                                        public void onCancelled(DatabaseError databaseError) {
+                                                        }
+                                                    });
+
+
+                                    allSampleData.add(post);
                                         adapter.notifyDataSetChanged();
 
 
@@ -233,10 +314,23 @@ public class AddFragment extends Fragment {
 
         if (requestCode == 200 && resultCode == RESULT_OK
                 && null != data) {
-
             selectedImage = data.getData();
 
-        }}
+
+
+        }
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+
+                String address = data.getStringExtra(LocationPickerActivity.LOCATION_ADDRESS);
+                lieux=address;
+
+            }
+            if (resultCode == RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated

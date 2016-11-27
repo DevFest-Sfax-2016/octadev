@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:orientation="vertical"
+    android:layout_marginTop="5dp"
     >
 
     <LinearLayout
@@ -15,7 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="2dp">
 
             <ImageView
                 android:id="@+id/user"
@@ -37,26 +39,24 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/lieu"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="chiheb hassairi"
-                        android:textColor="@color/primary_text"
-                        android:textSize="14dp" />
-
                     <TextView
                         android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="chiheb hassairi"
                         android:textColor="@color/primary_text"
                         android:textSize="14dp" />
+                    <TextView
+                        android:id="@+id/lieu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/primary_text"
+                        android:textSize="14dp" />
+
+
                 </LinearLayout>
 
                 <TextView

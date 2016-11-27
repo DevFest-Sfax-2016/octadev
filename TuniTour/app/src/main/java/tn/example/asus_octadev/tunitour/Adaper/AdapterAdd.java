@@ -69,10 +69,14 @@ public class AdapterAdd extends  RecyclerView.Adapter<AdapterAdd.OffreViewHolder
         holder.name.setText(mDataSet.get(position).getName());
         holder.titre.setText(mDataSet.get(position).getDescription());
         holder.lieu.setText(mDataSet.get(position).getLieux());
-        holder.date.setText(mDataSet.get(position).getCreated()+"");
+        Long time = (Long) (System.currentTimeMillis());
+         String result = (String) DateUtils.getRelativeTimeSpanString(mDataSet.get(position).getCreated(), time, 0);
+        holder.date.setText(result+"");
         Picasso.with(mcontext).load(mDataSet.get(position).getPhoto()).into(holder.user);
         if(! mDataSet.get(position).getImage().equals(""))
         Picasso.with(mcontext).load(mDataSet.get(position).getImage()).into(holder.content);
+        else
+        holder.content.setVisibility(View.GONE);
 
 
         holder.like.setOnClickListener(new View.OnClickListener() {
